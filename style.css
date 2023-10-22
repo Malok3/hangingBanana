@@ -1,0 +1,48 @@
+@import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
+
+body{
+    font-family: Permanent Marker;
+}
+main{
+    display: flex;
+    flex-direction: column;
+    max-width: 1000px;
+    flex-direction: row;
+    gap: 4em;
+    align-self: self-end;
+}
+.letters{
+    font-size: 2em;
+	background:none;
+	/*width:30px;
+	height:30px;*/
+	margin:auto;
+	text-align:center;
+	vertical-align:middle;
+	/*border-width:1px;*/
+	border-color:white;
+	border-style:solid;
+}
+#alphabet{
+    display: flex;
+    
+    flex-flow: wrap;
+    gap: 0.5em;
+    justify-content: flex-start;
+  align-content: flex-start;
+}
+#answer :not(:last-child) {
+    margin-right: 1em;
+}
+.leftSide{
+    width: 50%;
+}
+.rightSide{
+    width: 30%;
+    border:1px solid black
+    display: flex;
+  align-self: center;
+}
+.rigthSide img{
+    width: 200px;
+}
