@@ -1,0 +1,55 @@
+<style>
+.letters{
+display: table-cell;
+background:green;
+width:30px;
+height:30px;
+margin:auto;
+text-align:center;
+vertical-align:middle;
+border-width:1px;
+border-color:white;
+border-style:solid;
+}
+
+</style>
+
+<script>
+//oikean sanan määrittely
+let sana = ["P", "E", "K", "K", "A"];
+//sanan pituuden laskeminen silmukkaa varten
+let pituus = sana.length;
+//tarkistusta varten. Oikeaan tulee aikaa myöten koko sana, kun kaikki arvattu
+let oikea = new Array("?","?","?","?","?");
+
+//piilotetaan valittu kirjain ja kutsutaan tarkistamisfuntiota
+function valinta(i){
+	document.getElementById(i).style.display = "none";
+	tarkista(i);
+}
+
+
+//jos löytyy valittu kirjain alkuperäisestä sanasta, sijoitetaan se oikea-muuttujataulukkoon
+function tarkista(kirjain){
+	for (i=0; i<pituus;i++){
+	if(sana[i] == kirjain)
+	{oikea[i] = kirjain;}
+	}
+
+//näytetään tilanne arvausten mukaan
+alert(oikea);
+
+
+}
+
+
+</script>
+
+Hirsipuu
+<hr>
+<div id="container">
+<div id="A" class="letters" onclick="valinta('A')">A</div>
+<div id="B" class="letters" onclick="valinta('B')">B</div>
+<div id="K" class="letters" onclick="valinta('K')">K</div>
+
+</div>
