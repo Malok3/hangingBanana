@@ -15,73 +15,110 @@ const finnishWords = [
     "unelma", "ystävä", "yötaivas", "ääni", "aurinkoinen", "enkeleitä", "hymyillä", "iloinen", "järjestys", "kauneus", "kevättuuli", "kirkkaus",
     "kuiskaus", "kukkiva", "lempeä", "loistaa", "lumous", "lähellä", "merenranta", "neiti", "onni", "päivänsäde", "rakkaus", "sateenpisara", "sininen",
     "sydänyö", "taivas", "tähti", "uni", "valo"
-  ];
+];
 
 
-let sana = finnishWords[generateRandomInteger(209)].toUpperCase();
+const frenchWords = ["chat", "chien", "fleur", "maison", "arbre", "soleil", "table", "livre", "école", "fille", "garçon", "voiture", "oiseau", "fenêtre",
+    "porte", "fruits", "musique", "argent", "famille", "manger", "cuisine", "vêtements", "écrire", "paysage", "jardin", "plage", "montagne", "forêt", "vacances",
+    "histoire", "fenêtre", "lumière", "cheval", "bateau", "avion", "train", "voyage", "soleil", "lune", "étoile", "nuit", "amour", "cœur", "joie", "triste",
+    "rire", "sourire", "ami", "fête", "danse", "ville", "pays", "rue", "parc", "fête", "heure", "robe", "chemin", "maître", "espoir", "chance", "pierre",
+    "église", "lettre", "santé", "couleur", "calme", "douceur", "silence", "naissance", "victoire", "bonheur", "courage", "amitié", "enfance", "vérité",
+    "liberté", "courage", "paradis", "poésie", "évasion", "vitesse", "succès", "travail", "conseil", "savoir", "sagesse", "foule", "village", "génie",
+    "nature", "saison", "ciel", "pluie", "vent", "neige", "éclair", "énergie", "espace", "science", "théâtre", "chanson", "histoire", "évolution", "concept",
+    "communication", "langage", "artiste", "sérieux", "méditer", "penser", "voyager", "rêver", "explorer", "découvrir", "instruire", "éduquer", "animaux",
+    "plante", "insecte", "océan", "rivière", "montagne", "désert", "continent", "terre", "esprit", "corps", "santé", "maladie", "cœur", "âme", "spirituel",
+    "religion", "philosophie", "culture", "coutume", "tradition", "légende", "mythe", "héros", "aventure", "magie", "mystère", "fantôme", "monstre",
+    "créature", "étoile", "planète", "galaxie", "univers", "temps", "espace", "matière", "énergie", "électricité", "magnétique", "atomique", "nucléaire",
+    "molécule", "chimie", "physique", "biologie", "génétique", "évolution", "théorie", "expérience", "laboratoire", "invention", "technologie",
+    "communication", "internet", "ordinateur", "télévision", "radio", "téléphone", "appareil", "instrument", "machine", "voiture", "moto", "vélo",
+    "bateau", "avion", "train", "bus", "métro", "taxi", "billet", "argent", "banque", "économie", "commerce", "entreprise", "industrie",
+    "produit", "marché", "consommateur", "client", "publicité", "marketing", "stratégie", "manageme"
+];
+
+let sana ='';
+let pituus = 0;
+function french(){
+    sana='';
+    document.getElementById('startMessage').classList.add('hidden');
+    document.getElementById('flags').classList.add('fr')
+    sana = frenchWords[generateRandomInteger(209)].toUpperCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+    pituus=sana.length
+    generateEmptyAnswer()
+}
+
+function finn(){
+    sana='';
+    document.getElementById('startMessage').classList.add('hidden')
+    document.getElementById('flags').classList.add('finn')
+    sana = finnishWords[generateRandomInteger(209)].toUpperCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+    pituus=sana.length
+    generateEmptyAnswer()
+}
+
+
 let wordArray = [...sana]
 
-console.log(sana)
-console.log(wordArray)
 
+function generateEmptyAnswer(){
+    for (i = 0; i < sana.length; i++) {
+        const underscore = document.createElement("span");
+        underscore.innerText = '_'
+        document.getElementById('answer').appendChild(underscore)
+    }
 
-function generateRandomInteger(max) {
-    return Math.floor(Math.random() * max);
 }
 
 
-//sanan pituuden laskeminen silmukkaa varten
-let pituus = sana.length;
 let attempts = 0;
-let correctAttemps =0;
+let correctAttemps = 0;
 
-for (i=0;i<sana.length;i++){
-    const underscore = document.createElement("span");
-    underscore.innerText = '_'
-    document.getElementById('answer').appendChild(underscore)
-}
-
-function valinta(i){
+/*
+function valinta(i) {
     tarkista(i);
-}
+}*/
+function valinta(kirjain) {
+    console.log(pituus)
+    if (sana.includes(kirjain)) {
 
-
-function tarkista(kirjain){
-    
-    if (sana.includes(kirjain)){
-        
         document.getElementById(kirjain).classList.add('right');
-        for (i=0; i<pituus;i++){
-            
-            if(sana[i] === kirjain){
+        for (i = 0; i < pituus; i++) {
+
+            if (sana[i] === kirjain) {
                 correctAttemps++
                 document.querySelectorAll('#answer span')[i].textContent = kirjain;
             }
         }
 
-    }else{        
+    } else {
         document.getElementById(kirjain).classList.add('wrong');
         attempts++
     }
-    document.getElementById('draw').classList.add('draw'+attempts)
-    if (correctAttemps===pituus){
+    document.getElementById('draw').classList.add('draw' + attempts)
+    if (correctAttemps === pituus) {
         win()
     }
-    if(attempts===6){
+    if (attempts === 6) {
         loose()
     }
 }
-function loose(){
+
+
+
+function loose() {
     document.getElementById('endMessage').classList.remove('hidden')
     document.getElementById('looseMessage').classList.remove('hidden')
-    document.getElementById('correctWord').innerHTML=sana
+    document.getElementById('correctWord').innerHTML = sana
 }
 
-function win(){
+function win() {
     document.getElementById('winMessage').classList.remove('hidden')
     document.getElementById('endMessage').classList.remove('hidden')
 }
 
-function refresh(){
+function refresh() {
     location.reload();
+}
+
+function generateRandomInteger(max) {
+    return Math.floor(Math.random() * max);
 }

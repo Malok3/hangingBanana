@@ -13,9 +13,14 @@
 <body>
     <main>
         <div class="leftSide">
+            <div id="flags">
+                <img onclick="french()" src="./assets/fre.png">
+                <img onclick="finn()" src="./assets/fin.png">
+                <button class="refreshButton" onclick="refresh()"><img style="width: 100%;" src="./assets/refresh.png"/></button>
+            </div>
             <div class="title">
-                <h1>Le Pendu</h1>
-                <p>Lorem ipsum lalala prout ptour aldkadslkdaslaksdjal  akcmasdlmk</p>
+                <h1>Hanging BaNaNa</h1>
+                <p>Find the correct word in 6 attemps or less!</p>
               </div>
               <div id="answer"></div>
                 <div id="alphabet">
@@ -54,11 +59,20 @@
             <div id="draw" class=""></div>
         </div>
     </main>
+    <div id="startMessage">
+        <h1>Hanging BaNaNa</h1>
+        <p>Choose language</p>
+        <div id="flags">
+            <img onclick="french()" src="./assets/fre.png">
+            <img onclick="finn()" src="./assets/fin.png">
+        </div>
+    </div>
+
     <div id="endMessage" class="hidden">
         <h1 id="winMessage" class="hidden">Bravo!</h1>
         <div id="looseMessage" class="hidden">
             <h1>Oh no!</h1>
-            <h2>Correct word was <span id="correctWord"></span> </h2>
+            <h2>Correct word was <span id="correctWord" class="red"></span> </h2>
         </div>
         <button class="refreshButton" onclick="refresh()"><img style="width: 100%;" src="./assets/refresh.png"/></button>
     </div>

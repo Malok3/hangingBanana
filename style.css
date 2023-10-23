@@ -2,6 +2,8 @@
 
 body{
     font-family: Permanent Marker;
+    background-color: #e6e6e6;
+    height: 100vh;
 }
 main{
     display: flex;
@@ -11,10 +13,31 @@ main{
     gap: 4em;
     align-self: self-end;
 }
-main::before{
-    display: block;
-    background-color: rgba(49, 45, 45, 0.318);
+#flags img{
+    width: 100px;
+    cursor: pointer;
 }
+
+#flags.fr:after {
+    content: '';
+    background-image: url('./assets/circle.png'); /* Replace 'your-image.png' with the path to your PNG image */
+    width: 90px;
+    height: 86px;
+    background-size: cover;
+    position: absolute;
+    top: -5px;
+    left: 12px;
+  }
+  #flags.finn:after {
+    content: '';
+    background-image: url('./assets/circle.png'); /* Replace 'your-image.png' with the path to your PNG image */
+    width: 90px;
+    height: 86px;
+    background-size: cover;
+    position: absolute;
+    top: -5px;
+    left: 119px;
+  }
 
 #alphabet{
     display: flex;
@@ -95,13 +118,10 @@ main::before{
 .letters{
     font-size: 3em;
 	background:none;
-	/*width:30px;
-	height:30px;*/
 	margin:auto;
 	text-align:center;
 	vertical-align:middle;
-	/*border-width:1px;*/
-	border-color:white;
+	border:0px;
 	border-style:solid;
     position:relative;
 }
@@ -136,16 +156,17 @@ main::before{
   .letters.wrong::before{
     display: block!important;
   }
-#endMessage{
+#endMessage, #startMessage{
     position: absolute;
   border: 10px solid;
-  top: 30%;
-  background-color: white;
+  top: 20%;
+  background-color: #e6e6e6;
   padding: 2em;
   text-align: center;
-  left: 10%;
+  left: 5%;
   width: 30%;
 }
+.red{color:red}
   .hidden{
     display: none;
   }
