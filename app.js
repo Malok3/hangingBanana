@@ -18,17 +18,22 @@ const finnishWords = [
   ];
 
 
-let sana = finnishWords[generateRandomInteger(209)]
+let sana = finnishWords[generateRandomInteger(209)].toUpperCase();
 let wordArray = [...sana]
 
 console.log(sana)
 console.log(wordArray)
 
+
+function generateRandomInteger(max) {
+    return Math.floor(Math.random() * max);
+}
+
+
 //sanan pituuden laskeminen silmukkaa varten
 let pituus = sana.length;
-
-
-//let underscoreChar = '_'
+let attempts = 0;
+let correctAttemps =0;
 
 for (i=0;i<sana.length;i++){
     const underscore = document.createElement("span");
@@ -36,30 +41,47 @@ for (i=0;i<sana.length;i++){
     document.getElementById('answer').appendChild(underscore)
 }
 
-
-
-//tarkistusta varten. Oikeaan tulee aikaa myöten koko sana, kun kaikki arvattu
-let oikea = new Array("?","?","?","?","?");
-
-//piilotetaan valittu kirjain ja kutsutaan tarkistamisfuntiota
 function valinta(i){
-    document.getElementById(i).style.display = "none";
     tarkista(i);
 }
 
 
-//jos löytyy valittu kirjain alkuperäisestä sanasta, sijoitetaan se oikea-muuttujataulukkoon
 function tarkista(kirjain){
     
-    for (i=0; i<pituus;i++){
-        if(sana[i] == kirjain){
-            console.log('ss')
-            document.querySelector('#answer :nth-child(3)').innerHTML=kirjain
+    if (sana.includes(kirjain)){
+        
+        document.getElementById(kirjain).classList.add('right');
+        for (i=0; i<pituus;i++){
+            
+            if(sana[i] === kirjain){
+                correctAttemps++
+                document.querySelectorAll('#answer span')[i].textContent = kirjain;
+            }
         }
+
+    }else{        
+        document.getElementById(kirjain).classList.add('wrong');
+        attempts++
+    }
+    document.getElementById('draw').classList.add('draw'+attempts)
+    if (correctAttemps===pituus){
+        win()
+    }
+    if(attempts===6){
+        loose()
     }
 }
-
-function generateRandomInteger(max) {
-    return Math.floor(Math.random() * max);
+function loose(){
+    document.getElementById('endMessage').classList.remove('hidden')
+    document.getElementById('looseMessage').classList.remove('hidden')
+    document.getElementById('correctWord').innerHTML=sana
 }
 
+function win(){
+    document.getElementById('winMessage').classList.remove('hidden')
+    document.getElementById('endMessage').classList.remove('hidden')
+}
+
+function refresh(){
+    location.reload();
+}

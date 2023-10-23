@@ -50,12 +50,18 @@
                 </div>
         </div>
         <div class="rigthSide">
-            <img src="./assets/full.png">
+            
+            <div id="draw" class=""></div>
         </div>
-      
-
-        
     </main>
+    <div id="endMessage" class="hidden">
+        <h1 id="winMessage" class="hidden">Bravo!</h1>
+        <div id="looseMessage" class="hidden">
+            <h1>Oh no!</h1>
+            <h2>Correct word was <span id="correctWord"></span> </h2>
+        </div>
+        <button class="refreshButton" onclick="refresh()"><img style="width: 100%;" src="./assets/refresh.png"/></button>
+    </div>
 </body>
 
 </html>

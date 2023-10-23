@@ -11,8 +11,89 @@ main{
     gap: 4em;
     align-self: self-end;
 }
+main::before{
+    display: block;
+    background-color: rgba(49, 45, 45, 0.318);
+}
+
+#alphabet{
+    display: flex;
+    
+    flex-flow: wrap;
+    gap: 2em;
+    justify-content: flex-start;
+  align-content: flex-start;
+}
+#answer{
+    display: inline-block;
+    margin-bottom: 4em;
+}
+#answer::after {
+    content: '';
+    display: block;
+    background-image: url('./assets/line.png'); 
+    background-size: cover;
+    background-repeat: no-repeat;
+   width: 100%;
+   height: 25px;
+}
+#answer span {
+    font-size: 3em;
+}
+#answer :not(:last-child) {
+    margin-right: 1em;
+}
+.leftSide{
+    width: 50%;
+}
+.rigthSide{
+    width: 30%;
+    display: flex;
+    align-self: end;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 5em;
+}
+.draw1{
+    background-image: url(./assets/1.png);
+}
+.draw2{
+    background-image: url(./assets/2.png);
+}
+.draw3{
+    background-image: url(./assets/3.png);
+}
+.draw4{
+    background-image: url(./assets/4.png);
+}
+.draw5{
+    background-image: url(./assets/5.png);
+}
+.draw6{
+    background-image: url(./assets/6.png);
+}
+#draw {
+    width: 100%;
+    padding-top: 100%;
+    background-size: cover; 
+    background-position: center; 
+}
+.refreshButton {
+    background: none;
+    border: 0px;
+    width: 75px;
+    cursor: pointer;
+}
+
+.letters.right:hover, .letters.wrong:hover{
+
+    cursor: not-allowed;
+}
+.letters:hover{
+    cursor: pointer;
+}
 .letters{
-    font-size: 2em;
+    font-size: 3em;
 	background:none;
 	/*width:30px;
 	height:30px;*/
@@ -22,27 +103,49 @@ main{
 	/*border-width:1px;*/
 	border-color:white;
 	border-style:solid;
+    position:relative;
 }
-#alphabet{
-    display: flex;
-    
-    flex-flow: wrap;
-    gap: 0.5em;
-    justify-content: flex-start;
-  align-content: flex-start;
+.letters::before {
+    content: '';
+    display: none;
+    background-image: url('./assets/scribble.png'); /* Replace 'your-image.png' with the path to your PNG image */
+    width: 65px; /* Set the desired width */
+    height: 35px; /* Set the desired height */
+    background-size: cover; /* Adjust the background size as needed */
+    position: absolute;
+    top:20px;
+    left: -10px;
+  }
+
+  .letters::after {
+    content: '';
+    display: none;
+    background-image: url('./assets/circle.png'); /* Replace 'your-image.png' with the path to your PNG image */
+    width: 68px;
+    height: 65px;
+    background-size: cover;
+    position: absolute;
+    top: 5px;
+    left: -11px;
+  
+  }
+ 
+  .letters.right::after{
+    display: block!important;
+  }
+  .letters.wrong::before{
+    display: block!important;
+  }
+#endMessage{
+    position: absolute;
+  border: 10px solid;
+  top: 30%;
+  background-color: white;
+  padding: 2em;
+  text-align: center;
+  left: 10%;
+  width: 30%;
 }
-#answer :not(:last-child) {
-    margin-right: 1em;
-}
-.leftSide{
-    width: 50%;
-}
-.rightSide{
-    width: 30%;
-    border:1px solid black
-    display: flex;
-  align-self: center;
-}
-.rigthSide img{
-    width: 200px;
-}
+  .hidden{
+    display: none;
+  }
