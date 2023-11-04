@@ -1,5 +1,5 @@
 # hangingBanana
 
-Hanging game with Finnish and English words
+Hanging game made with Javascript
 
 ![Alt text](/assets/screenshot.png?raw=true "Optional Title")
